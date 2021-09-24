@@ -1,7 +1,7 @@
 select InventoryKey, ItemMasterKey, DateKey,Quantity,
 sum(Quantity) over (partition by ItemMasterKey
 					order by DateKey
-                    rows between unbounded preceding and current row
+                    rows between current row and 2 following
                     ) as running_total
 from inventory_fact;
 
